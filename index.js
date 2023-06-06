@@ -25,7 +25,11 @@ connectDB();
 const app = express();
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
-
+app.use(cors());
+app.get("/",(req,res)=>{
+  res.setHeader("Access-Control-Allow-credentials","true");
+  res.send("Backend is running");
+});
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "backend/images");
