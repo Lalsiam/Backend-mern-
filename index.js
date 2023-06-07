@@ -19,12 +19,14 @@ const blogCatRoute = require("./routes/blogcat");
 const commentRoutes = require("./routes/comments");
 const videoRoutes = require("./routes/videos");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 dotenv.config();
 connectDB();
 const app = express();
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use(cors());
 app.get("/",(req,res)=>{
   res.setHeader("Access-Control-Allow-credentials","true");
   res.send("Backend is running");
